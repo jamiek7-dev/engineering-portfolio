@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jamie Kang — Engineering Portfolio</title>
+  <meta name="description" content="Electrical engineering student seeking internships. Projects, skills, and contact info." />
+  <!-- Social preview -->
+  <meta property="og:title" content="Jamie Kang — Electrical Engineering Student" />
+  <meta property="og:description" content="Projects, skills, and contact info." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" />
+  <meta name="theme-color" content="#0b5fff" />
+  <style>
+    :root{ --bg:#ffffff; --fg:#0b0b0b; --muted:#6b7280; --card:#f9fafb; --accent:#2563eb; --border:#e5e7eb; }
+    @media (prefers-color-scheme: dark){ :root{ --bg:#0b0b0b; --fg:#f3f4f6; --muted:#a1a1aa; --card:#111213; --accent:#60a5fa; --border:#26272b; } }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    .container{ max-width:960px; margin-inline:auto; padding:16px; }
+    header{ position:sticky; top:0; backdrop-filter:saturate(180%) blur(6px); background:color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--border); }
+    nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; }
+    nav .links{ display:none; gap:14px; }
+    @media (min-width:640px){ nav .links{ display:flex; } }
+    .hero{ padding:32px 16px; display:grid; gap:16px; }
+    .tag{ font-size:12px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+    h1{ margin:0; font-size:clamp(24px, 5vw, 36px); line-height:1.2; }
+    .sub{ color:var(--muted); margin:6px 0 0 0; }
+    .row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:var(--fg); color:var(--bg); font-weight:600; }
+    .btn.outline{ background:transparent; color:var(--fg); }
+    .grid{ display:grid; gap:12px; }
+    @media (min-width:640px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; }
+    .card h3{ margin:0 0 6px 0; font-size:18px; }
+    ul.inline{ list-style:none; margin:8px 0 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+    ul.inline li{ font-size:12px; padding:6px 8px; background:var(--bg); border:1px solid var(--border); border-radius:999px; color:var(--muted); }
+    section{ padding:22px 0; }
+    footer{ padding:30px 0; text-align:center; color:var(--muted); font-size:12px; }
+    /* Accessibility helpers */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+    /* Simple router */
+    .route{ display:none; }
+    /* Show the currently targeted section even if JS fails */
+    .route:target{ display:block; }
+    .route.active{ display:block; }
+
+    /* Gallery */
+    .gallery{ display:grid; gap:10px; grid-template-columns:1fr 1fr; }
+    @media (min-width:760px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
+    .gallery img{ width:100%; height:220px; object-fit:cover; border-radius:10px; border:1px solid var(--border); background:#e5e7eb; }
+    figure{ margin:0; }
+    figcaption{ font-size:12px; color:var(--muted); margin-top:6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <strong>Jamie Kang - Engineering Portfolio</strong>
+      <div class="links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- ==================== HOME ==================== -->
+    <section id="home" class="route active" aria-label="Home">
+      <!-- Hero -->
+      <section class="hero">
+        <span class="tag">UBC Electrical Engineering Student</span>
+        <h1>Building reliable power, embedded, and hardware projects</h1>
+        <!-- <p class="sub">Check out my projects below - click on "More details" for images and explanations.</p> -->
+        <div class="row">
+          <!-- <a class="btn" href="resume.pdf" download>Download Resume</a> -->
+          <a class="btn outline" href="#contact">Contact</a>
+          <a class="btn outline" href="https://github.com/jamiekang7" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn outline" href="https://www.linkedin.com/in/jamiekang7" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </section>
+
+      <!-- Quick snapshot -->
+      <section aria-labelledby="snapshot-title" class="grid cols-2">
+        <div class="card">
+          <h3 id="snapshot-title">Overview</h3>
+          <p class="sub" style="margin:0">Vancouver, BC • Open to relocating • Co‑op/Internship (2025–2026) • Power • Embedded • Hardware</p>
+        </div>
+        <div class="card">
+          <h3>What I value</h3>
+          <p class="sub" style="margin:0">Clear communication, collaborative teams, and creative problem solving</p>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <h2 style="margin:0 0 10px 0; font-size:22px;">Projects</h2>
+        <div class="grid cols-2" role="list">
+          <article class="card" role="listitem">
+            <p class="tag">Power Electronics</p>
+            <h3>48V → 24V Buck Converter PCB (TI LM5116)</h3>
+            <p>High‑current DC/DC with thermal relief and efficiency tests for robotics distribution.</p>
+            <ul class="inline"><li>Altium</li><li>LM5116</li><li>Oscilloscope</li><li>Load step</li></ul>
+            <div class="row"><a class="btn outline" href="#buck-details" onclick="event.preventDefault(); location.hash='#buck-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Digital / FPGA</p>
+            <h3>Digital Neural Network Accelerator</h3>
+            <p>Custom accelerators (DMA/dot‑product), Avalon interface, SDRAM + VGA, and testbench automation.</p>
+            <ul class="inline"><li>Verilog</li><li>Quartus</li><li>ModelSim</li><li>SDRAM</li></ul>
+            <div class="row"><a class="btn outline" href="#nn-details" onclick="event.preventDefault(); location.hash='#nn-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Audio / Embedded</p>
+            <h3>Bluetooth Speaker (Class‑AB + ESP32)</h3>
+            <p>Custom Class‑AB amplifier with preamp, tone control, and ESP32 Bluetooth audio + controls.</p>
+            <ul class="inline"><li>Class‑AB</li><li>ESP32</li><li>PCB</li><li>BT A2DP</li></ul>
+            <div class="row"><a class="btn outline" href="#speaker-details" onclick="event.preventDefault(); location.hash='#speaker-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Robotics</p>
+            <h3>Coin Picking Robot</h3>
+            <p>PIC32‑based autonomous robot with metal‑detector frontend and dual MG90S servos; &lt;2% miss rate.</p>
+            <ul class="inline"><li>PIC32</li><li>STM32</li><li>Servos</li><li>RF link</li><li>LCD</li></ul>
+            <div class="row"><a class="btn outline" href="#coin-details" onclick="event.preventDefault(); location.hash='#coin-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Power / Product</p>
+            <h3>Wireless Charging Power Bank</h3>
+            <p>Qi‑enabled bank with BMS/charging IC, LED capacity indicator, and buck/boost regulation.</p>
+            <ul class="inline"><li>Qi</li><li>BMS</li><li>USB‑C/USB‑A</li><li>Buck/Boost</li></ul>
+            <div class="row"><a class="btn outline" href="#powerbank-details" onclick="event.preventDefault(); location.hash='#powerbank-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Digital / FPGA</p>
+            <h3>Reduced Instruction Set (RISC) Computer</h3>
+            <p>Extended simple RISC CPU on DE1‑SoC; SystemVerilog + testbenches; top marks across labs.</p>
+            <ul class="inline"><li>SystemVerilog</li><li>Quartus</li><li>ModelSim</li><li>DE1‑SoC</li></ul>
+            <div class="row"><a class="btn outline" href="#cpu-details" onclick="event.preventDefault(); location.hash='#cpu-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">iOS / Software</p>
+            <h3>Empire — Productivity App (iOS)</h3>
+            <p>Launched on App Store; 6,890+ downloads, 4.9★ avg; Swift + Obj‑C for secure state handling.</p>
+            <ul class="inline"><li>Swift</li><li>Objective‑C</li><li>App Store</li></ul>
+            <div class="row"><a class="btn outline" href="#ios-details" onclick="event.preventDefault(); location.hash='#ios-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Controls / Manufacturing</p>
+            <h3>Reflow Oven Controller</h3>
+            <p>MCU‑based temperature control with K‑type thermocouple + SSR; multi‑stage FSM reflow profiles.</p>
+            <ul class="inline"><li>Assembly</li><li>SSR</li><li>Thermocouple</li><li>FSM</li></ul>
+            <div class="row"><a class="btn outline" href="#reflow-details" onclick="event.preventDefault(); location.hash='#reflow-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills">
+        <h2 style="margin:10px 0; font-size:22px;">Skills</h2>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Electrical</h3>
+            <ul class="inline"><li>Power electronics</li><li>Buck/boost</li><li>Oscilloscope</li><li>PCB bring‑up</li></ul>
+          </div>
+          <div class="card">
+            <h3>Digital/FPGA</h3>
+            <ul class="inline"><li>Verilog</li><li>Quartus</li><li>Avalon Interface</li><li>SDRAM/PLL</li></ul>
+          </div>
+          <div class="card">
+            <h3>Embedded</h3>
+            <ul class="inline"><li>ESP32</li><li>PIC32</li><li>STM32</li><li>UART/SPI/I2C</li><li>Bootloaders</li></ul>
+          </div>
+          <div class="card">
+            <h3>Software</h3>
+            <ul class="inline"><li>C/C++</li><li>Python</li><li>Git/GitHub</li><li>Java</li><li>Swift</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <h2 style="margin:10px 0; font-size:22px;">About</h2>
+        <p class="sub">Hello, I’m Jamie, a third-year Electrical Engineering student at UBC. I have a deep appreciation for our technological abundance and wish to work on hardware, the essential layer that makes truly transformative products possible. Aside from engineering work, I spend my time learning the humanities, exercising, and walking in nature. I thrive in collaborative and lively workspaces, and I am open to new opportunities where I can contribute meaningfully. If my work interests you, I’d be glad to connect!
+</p>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <h2 style="margin:10px 0; font-size:22px;">Contact</h2>
+        <div class="row">
+          <a class="btn" href="mailto:jamiekang0@gmail.com">jamiekang0@gmail.com</a>
+          <a class="btn outline" href="https://www.linkedin.com/in/jamiekang7" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn outline" href="https://github.com/jamiekang7" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </section>
+    </section>
+
+        <!-- ==================== DETAILS: BUCK ==================== -->
+    <section id="buck-details" class="route" aria-label="48V to 24V Buck Converter details">
+    <a class="btn outline" href="#home">← Back to Projects</a>
+    <h2 style="margin:10px 0; font-size:22px;">48V → 24V Buck Converter (TI LM5116)</h2>
+    <div class="card">
+        <p>High-current synchronous buck used in robotics power distribution. Focus areas: thermal management, switching node layout, and efficiency across load.</p>
+        <ul>
+        <li>Optimized SW node to reduce EMI/ringing and switch losses</li>
+        <li>Kelvin-sensed current path; copper pours + via stitching for low impedance</li>
+        <li>Measured efficiency and thermal performance across load; added RC snubbers as needed</li>
+        </ul>
+        <p><strong>Tech:</strong> Altium, LM5116, DMM, Oscilloscope, Electronic load</p>
+        <!-- Optional: link to docs/repo -->
+        <!-- <p><a href="https://your-link" target="_blank" rel="noreferrer">Schematic / Repo</a></p> -->
+    </div>
+    <div class="gallery" style="margin-top:12px;">
+        <figure>
+        <img src="images/buck-0.jpg" alt="Schematic" />
+        <figcaption>Schematic</figcaption>
+        </figure>
+        <figure>
+        <img src="images/buck-1.jpg" alt="PCB Top View" />
+        <figcaption>PCB Top View</figcaption>
+        </figure>
+        <figure>
+        <img src="images/buck-2.jpg" alt="Completed PCB" />
+        <figcaption>Completed PCB</figcaption>
+        </figure>
+        <figure>
+        <img src="images/buck-3.jpg" alt="Page 7/12 of Test Plan" />
+        <figcaption>Page 7/12 of Test Plan</figcaption>
+        </figure>
+        <figure>
+        <img src="images/buck-4.jpg" alt="Bill of Materials (BOM)" />
+        <figcaption>Bill of Materials (BOM)</figcaption>
+        </figure>
+    </div>
+    </section>
+
+
+    <!-- ==================== DETAILS: NN ==================== -->
+    <section id="nn-details" class="route" aria-label="Digital Neural Network Accelerator details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Digital Neural Network Accelerator</h2>
+      <div class="card">
+        <p>Designed for DE1‑SoC FPGA platform with custom accelerators connected to Avalon bus. Implemented DMA, dot‑product acceleration, SDRAM controller, and VGA visualization, with automated testbenches.</p>
+        <ul>
+          <li>Memory‑mapped Avalon interface</li>
+          <li>Custom DMA engine for data movement</li>
+          <li>Dot‑product accelerator for neural net inference</li>
+          <li>SDRAM + VGA integration for visualization</li>
+        </ul>
+        <p><strong>Tech:</strong> Verilog, Quartus, ModelSim, Avalon, SDRAM, VGA</p>
+      </div>
+      <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/nn-1.jpg" alt="Platform Designer system block diagram (part 1)" />
+          <figcaption>Platform Designer system block diagram (part 1)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/nn-2.jpg" alt="Platform Designer system block diagram (part 2)" />
+          <figcaption>Platform Designer system block diagram (part 2)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== DETAILS: SPEAKER ==================== -->
+    <section id="speaker-details" class="route" aria-label="Bluetooth Speaker details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Bluetooth Speaker — Class‑AB Amplifier + ESP32</h2>
+      <div class="card">
+        <p>Custom Class‑AB audio amplifier with preamp and tone control. ESP32 handles Bluetooth (A2DP) streaming and UI (volume, track control).</p>
+        <ul>
+          <li>Thermally‑biased Class‑AB output stage; heat‑sink sizing and SOA checks</li>
+          <li>Low‑noise preamp, RC tone network; star‑grounding and decoupling layout</li>
+          <li>ESP32 for BT pairing, media keys, and battery/thermal telemetry</li>
+        </ul>
+        <p><strong>Tech:</strong> Class‑AB, ESP32, A2DP, PCB layout, Audio measurement</p>
+      </div>
+      <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/speaker-1.jpg" alt="Class‑AB amplifier schematic" />
+          <figcaption>Class‑AB amplifier schematic</figcaption>
+        </figure>
+        <figure>
+          <img src="images/speaker-2.jpg" alt="Pre-Amplifier schematic" />
+          <figcaption>Pre-Amplifier schematic</figcaption>
+        </figure>
+        <figure>
+          <img src="images/speaker-3.jpg" alt="Prototype speaker unit" />
+          <figcaption>Prototype speaker unit</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== DETAILS: COIN ROBOT ==================== -->
+    <section id="coin-details" class="route" aria-label="Coin Picking Robot details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Coin Picking Robot — Group Project</h2>
+      <div class="card">
+        <p>Built a PIC32‑based autonomous robot with a custom metal‑detector front end and dual MG90S servos; achieved &lt;2% miss rate and &lt;100 ms pick‑up latency.</p>
+        <ul>
+          <li>Developed 2k+ lines of C firmware: interrupt frequency capture, PWM control</li>
+          <li>Implemented a radio link to an STM32 handheld displaying live stats on a 4‑bit LCD</li>
+          <li>Custom make/flash toolchain for rapid iteration</li>
+        </ul>
+        <p><strong>Tech:</strong> PIC32, MG90S, RF link, STM32, LCD, C</p>
+      </div>
+      <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/coin-1.jpg" alt="Robot hardware diagram" />
+          <figcaption>Robot hardware diagram</figcaption>
+        </figure>
+        <figure>
+          <img src="images/coin-2.jpg" alt="Remote controller hardware diagram" />
+          <figcaption>Remote controller hardware diagram</figcaption>
+        </figure>
+        <figure>
+          <img src="images/coin-3.jpg" alt="Robot software diagram" />
+          <figcaption>Robot software diagram</figcaption>
+        </figure>
+        <figure>
+          <img src="images/coin-4.jpg" alt="Remote controller software diagram" />
+          <figcaption>Remote controller software diagram</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== DETAILS: POWER BANK ==================== -->
+    <section id="powerbank-details" class="route" aria-label="Wireless Power Bank details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Wireless Charging Power Bank</h2>
+      <div class="card">
+        <p>Qi‑enabled power bank featuring a BMS and charging IC for safe operation, LED battery capacity display, and a buck/boost converter regulating between USB‑C (in) and USB‑A (out).</p>
+        <ul>
+          <li>Charge/discharge protection and cell balancing via BMS + charger IC</li>
+          <li>Qi RX module integration and thermal management</li>
+          <li>LED fuel gauge and USB‑C sink negotiation</li>
+        </ul>
+        <p><strong>Tech:</strong> Qi, BMS, USB‑C, Buck/Boost, Thermal</p>
+      </div>
+      <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/pb-1.jpg" alt="Interior View" />
+          <figcaption>Interior View</figcaption>
+        </figure>
+        <figure>
+          <img src="images/pb-2.jpg" alt="Block Diagram (Page 5/11 of Design Document)" />
+          <figcaption>Block Diagram (Page 5/11 of Design Document)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/pb-3.jpg" alt="Assembled unit" />
+          <figcaption>Assembled unit</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== DETAILS: CPU (UPDATED) ==================== -->
+    <section id="cpu-details" class="route" aria-label="RISC CPU details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Reduced Instruction Set (RISC) Computer</h2>
+      <div class="card">
+        <p>October 2024 – November 2024. Designed and implemented an extended simple RISC machine CPU on the DE1‑SoC. Achieved top scores on all labs, demonstrating proficiency in microprocessor architecture.</p>
+        <ul>
+          <li>Created and tested assembly programs to validate functionality</li>
+          <li>SystemVerilog for hardware description and test benches</li>
+          <li>Used ModelSim/Quartus for simulation and synthesis</li>
+        </ul>
+        <p><strong>Tech:</strong> SystemVerilog, ModelSim, Quartus, DE1‑SoC</p>
+      </div>
+      <!-- <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/cpu-1.jpg" alt="Platform Designer diagram" />
+          <figcaption>System diagram</figcaption>
+        </figure>
+        <figure>
+          <img src="images/cpu-2.jpg" alt="ModelSim waveform" />
+          <figcaption>Testbench waveforms</figcaption>
+        </figure>
+        <figure>
+          <img src="images/cpu-3.jpg" alt="VGA output" />
+          <figcaption>VGA output demo</figcaption>
+        </figure>
+      </div> -->
+    </section>
+
+    <!-- ==================== DETAILS: iOS APP ==================== -->
+    <section id="ios-details" class="route" aria-label="Empire iOS app details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Empire — Productivity Manager (iOS)</h2>
+      <div class="card">
+        <p>August 2022 – Present. Developed and launched on the iOS App Store using Swift; 6,890+ downloads, 4.9/5 average rating.</p>
+        <ul>
+          <li>Low‑level proprietary algorithm adjusts in‑app currency based on device state</li>
+          <li>Used Objective‑C functions to detect when protected data became unavailable</li>
+          <li>Telemetry and crash monitoring for releases</li>
+        </ul>
+        <p><strong>Tech:</strong> Swift, Objective‑C, iOS, App Store Connect</p>
+      </div>
+      <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/ios-1.jpg" alt="App Store listing" />
+          <figcaption>App Store listing</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ios-2.jpg" alt="Empire Screen (Example 1)" />
+          <figcaption>Empire Screen (Example 1)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ios-3.jpg" alt="Empire Screen (Example 2)" />
+          <figcaption>Empire Screen (Example 2)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ios-4.jpg" alt="Schedule Screen" />
+          <figcaption>Schedule Screen</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ios-5.jpg" alt="Work Session" />
+          <figcaption>Work Session</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ios-6.jpg" alt="Exited App Screen" />
+          <figcaption>Exited App Screen</figcaption>
+        </figure>
+        <figure>
+          <img src="images/ios-7.jpg" alt="Statistics Screen" />
+          <figcaption>Statistics Screen</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== DETAILS: REFLOW CONTROLLER ==================== -->
+    <section id="reflow-details" class="route" aria-label="Reflow oven details">
+      <a class="btn outline" href="#home">← Back to Projects</a>
+      <h2 style="margin:10px 0; font-size:22px;">Reflow Oven Controller</h2>
+      <div class="card">
+        <p>Designed and programmed a microcontroller‑based system (Assembly) for precise temperature control using a K‑type thermocouple and SSR. Implemented an FSM for multi‑stage reflow profiles and safety checks; built a dynamic website (HTML/CSS/JS) with Python graphing (Matplotlib/Pandas) for real‑time visualization.</p>
+        <ul>
+          <li>Thermocouple interface + SSR drive; safety interlocks</li>
+          <li>FSM profiles: preheat, soak, reflow, cool‑down</li>
+          <li>Web UI + Python backend for plotting</li>
+        </ul>
+        <p><strong>Tech:</strong> Assembly, SSR, K‑type, HTML/CSS/JS, Python, Matplotlib, Pandas</p>
+      </div>
+      <div class="gallery" style="margin-top:12px;">
+        <figure>
+          <img src="images/reflow-1.jpg" alt="Hardware diagram" />
+          <figcaption>Hardware diagram</figcaption>
+        </figure>
+        <figure>
+          <img src="images/reflow-2.jpg" alt="Software diagram" />
+          <figcaption>Software diagram</figcaption>
+        </figure>
+        
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="y"></span> Jamie Kang
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- Simple hash router ---
+    const DETAIL_IDS = ['buck-details','nn-details','speaker-details','coin-details','powerbank-details','cpu-details','ios-details','reflow-details'];
+    const home = document.getElementById('home');
+    const routes = DETAIL_IDS.map(id => document.getElementById(id));
+
+    function show(el){ el && el.classList.add('active'); }
+    function hide(el){ el && el.classList.remove('active'); }
+
+    function render(){
+      const h = (location.hash || '#home').slice(1);
+      const isDetail = DETAIL_IDS.includes(h);
+      // Toggle home
+      if (isDetail) { hide(home); } else { show(home); }
+      // Toggle details
+      routes.forEach(r => { if(!r) return; r.id === h ? show(r) : hide(r); });
+      // If navigating to a sub-section on home, scroll it into view
+      if (!isDetail && h && h !== 'home') {
+        const target = document.getElementById(h);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Scroll detail into view as well
+      if (isDetail) {
+        const target = document.getElementById(h);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    window.addEventListener('hashchange', render);
+    document.addEventListener('DOMContentLoaded', render);
+
+    const resultsEl = document.getElementById('test-results');
+    function report(name, pass, details){
+      if(!resultsEl) return;
+      const li = document.createElement('li');
+      li.textContent = (pass ? '✅ ' : '❌ ') + name + (details ? ' — ' + details : '');
+      resultsEl.appendChild(li);
+    }
+    const runBtn = document.getElementById('run-tests');
+    if (runBtn && resultsEl) {
+      runBtn.addEventListener('click', () => {
+        resultsEl.innerHTML = '';
+        try { location.hash = '#home'; render(); const t1 = home.classList.contains('active'); report('Default hash shows home', t1); } catch(e){ report('Default hash shows home', false, e.message); }
+        try { location.hash = '#buck-details'; render(); const buck = document.getElementById('buck-details'); const t2 = buck.classList.contains('active') && !home.classList.contains('active'); report('Buck details route toggles correctly', t2); } catch(e){ report('Buck details route toggles correctly', false, e.message); }
+        try { location.hash = '#home'; render(); const noneActive = DETAIL_IDS.every(id => !document.getElementById(id).classList.contains('active')); report('Navigating back to home hides details', noneActive); } catch(e){ report('Navigating back to home hides details', false, e.message); }
+        try { location.hash = '#skills'; render(); report('Deep-link to #skills does not crash', true); } catch(e){ report('Deep-link to #skills', false, e.message); }
+      });
+    }
+  </script>
+</body>
+</html>
