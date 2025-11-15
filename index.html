@@ -211,11 +211,11 @@
     <a class="btn outline" href="#home">← Back to Projects</a>
     <h2 style="margin:10px 0; font-size:22px;">48V → 24V Buck Converter (TI LM5116)</h2>
     <div class="card">
-        <p>High-current synchronous buck used in robotics power distribution. Focus areas: thermal management, switching node layout, and efficiency across load.</p>
+        <p>High-current synchronous buck used in robotics power distribution. Focus areas: thermal management and efficiency across load.</p>
         <ul>
-        <li>Optimized SW node to reduce EMI/ringing and switch losses</li>
-        <li>Kelvin-sensed current path; copper pours + via stitching for low impedance</li>
-        <li>Measured efficiency and thermal performance across load; added RC snubbers as needed</li>
+        <li>Measured efficiency and thermal performance across load.</li>
+        <li>Designed and tested a 48V→24V buck converter (TI LM5116, 15A) using Altium; developed a detailed test plan and
+project documentation, and validated performance with an oscilloscope and variable load.</li>
         </ul>
         <p><strong>Tech:</strong> Altium, LM5116, DMM, Oscilloscope, Electronic load</p>
         <!-- Optional: link to docs/repo -->
@@ -277,11 +277,10 @@
       <a class="btn outline" href="#home">← Back to Projects</a>
       <h2 style="margin:10px 0; font-size:22px;">Bluetooth Speaker — Class‑AB Amplifier + ESP32</h2>
       <div class="card">
-        <p>Custom Class‑AB audio amplifier with preamp and tone control. ESP32 handles Bluetooth (A2DP) streaming and UI (volume, track control).</p>
+        <p>Custom Class‑AB audio amplifier with preamp and tone control. ESP32 handles Bluetooth streaming and UI.</p>
         <ul>
-          <li>Thermally‑biased Class‑AB output stage; heat‑sink sizing and SOA checks</li>
-          <li>Low‑noise preamp, RC tone network; star‑grounding and decoupling layout</li>
-          <li>ESP32 for BT pairing, media keys, and battery/thermal telemetry</li>
+          <li>Thermally‑biased Class‑AB output stage with low-noise preamp.</li>
+          <li>ESP32 for BT pairing and telemetry</li>
         </ul>
         <p><strong>Tech:</strong> Class‑AB, ESP32, A2DP, PCB layout, Audio measurement</p>
       </div>
@@ -306,7 +305,7 @@
       <a class="btn outline" href="#home">← Back to Projects</a>
       <h2 style="margin:10px 0; font-size:22px;">Coin Picking Robot — Group Project</h2>
       <div class="card">
-        <p>Built a PIC32‑based autonomous robot with a custom metal‑detector front end and dual MG90S servos; achieved &lt;2% miss rate and &lt;100 ms pick‑up latency.</p>
+        <p>Built a PIC32‑based autonomous robot with a custom metal‑detector front end and dual MG90S servos.</p>
         <ul>
           <li>Developed 2k+ lines of C firmware: interrupt frequency capture, PWM control</li>
           <li>Implemented a radio link to an STM32 handheld displaying live stats on a 4‑bit LCD</li>
@@ -342,7 +341,7 @@
         <p>Qi‑enabled power bank featuring a BMS and charging IC for safe operation, LED battery capacity display, and a buck/boost converter regulating between USB‑C (in) and USB‑A (out).</p>
         <ul>
           <li>Charge/discharge protection and cell balancing via BMS + charger IC</li>
-          <li>Qi RX module integration and thermal management</li>
+          <li>Qi Coil Receiver module integration and thermal management</li>
           <li>LED fuel gauge and USB‑C sink negotiation</li>
         </ul>
         <p><strong>Tech:</strong> Qi, BMS, USB‑C, Buck/Boost, Thermal</p>
@@ -397,7 +396,7 @@
       <a class="btn outline" href="#home">← Back to Projects</a>
       <h2 style="margin:10px 0; font-size:22px;">Empire — Productivity Manager (iOS)</h2>
       <div class="card">
-        <p>August 2022 – Present. Developed and launched on the iOS App Store using Swift; 6,890+ downloads, 4.9/5 average rating.</p>
+        <p>August 2022 – Present. Developed and launched on the iOS App Store using Swift; 7,670+ downloads, 4.9/5 average rating.</p>
         <ul>
           <li>Low‑level proprietary algorithm adjusts in‑app currency based on device state</li>
           <li>Used Objective‑C functions to detect when protected data became unavailable</li>
