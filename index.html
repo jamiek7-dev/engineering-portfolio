@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Jamie Kang — Engineering Portfolio</title>
   <meta name="description" content="Electrical engineering student seeking internships. Projects, skills, and contact info." />
   <!-- Social preview -->
@@ -10,59 +11,324 @@
   <meta property="og:description" content="Projects, skills, and contact info." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="" />
-  <meta name="theme-color" content="#0b5fff" />
+  <meta name="theme-color" content="#080808" />
   <style>
-    :root{ --bg:#ffffff; --fg:#0b0b0b; --muted:#6b7280; --card:#f9fafb; --accent:#2563eb; --border:#e5e7eb; }
-    @media (prefers-color-scheme: dark){ :root{ --bg:#0b0b0b; --fg:#f3f4f6; --muted:#a1a1aa; --card:#111213; --accent:#60a5fa; --border:#26272b; } }
-    html,body{ margin:0; padding:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
-    a{ color:var(--accent); text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-    .container{ max-width:960px; margin-inline:auto; padding:16px; }
-    header{ position:sticky; top:0; backdrop-filter:saturate(180%) blur(6px); background:color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--border); }
-    nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; }
-    nav .links{ display:none; gap:14px; }
-    @media (min-width:640px){ nav .links{ display:flex; } }
-    .hero{ padding:32px 16px; display:grid; gap:16px; }
-    .tag{ font-size:12px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
-    h1{ margin:0; font-size:clamp(24px, 5vw, 36px); line-height:1.2; }
-    .sub{ color:var(--muted); margin:6px 0 0 0; }
-    .row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-    .btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:var(--fg); color:var(--bg); font-weight:600; }
-    .btn.outline{ background:transparent; color:var(--fg); }
-    .grid{ display:grid; gap:12px; }
-    @media (min-width:640px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } }
-    .card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; }
-    .card h3{ margin:0 0 6px 0; font-size:18px; }
-    ul.inline{ list-style:none; margin:8px 0 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
-    ul.inline li{ font-size:12px; padding:6px 8px; background:var(--bg); border:1px solid var(--border); border-radius:999px; color:var(--muted); }
-    section{ padding:22px 0; }
-    footer{ padding:30px 0; text-align:center; color:var(--muted); font-size:12px; }
-    /* Accessibility helpers */
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    :root { --bg:#080808; --fg:#ededeb; --muted:#ababab; --border:#555555; --accent:#8dafff; --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace; }
+    :root { color-scheme:dark; }
+    * { box-sizing:border-box; }
+    html { scroll-padding-top:100px; }
+    body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.65 Arial,Helvetica,sans-serif; }
+    a { color:inherit; text-underline-offset:4px; }
+    a:hover { color:var(--accent); }
+    a:focus-visible { outline:3px solid var(--accent); outline-offset:5px; }
+    ::selection { background:var(--fg); color:var(--bg); }
+    .container { width:min(1200px,100% - 80px); margin-inline:auto; }
+    header { position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--border); }
+    nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    nav strong { font:600 14px/1.4 var(--mono); letter-spacing:-.04em; }
+    nav .links { display:flex; gap:28px; font:14px var(--mono); }
+    nav a { text-decoration:none; }
+    section { padding:32px 0; scroll-margin-top:20px; }
+    #home { padding-top:0; }
+    .hero { padding:76px 0 56px; }
+    .tag { font:13px/1.5 var(--mono); letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+    .hero > .tag { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+    .hero > .tag::before { content:""; width:9px; height:9px; background:var(--accent); }
+    h1 { max-width:1000px; margin:0; font-size:clamp(38px,5.5vw,72px); font-weight:500; letter-spacing:-.055em; line-height:1.06; }
+    h2 { font:500 30px/1.2 var(--mono); letter-spacing:-.06em; }
+    h3 { margin:0 0 12px; font-size:22px; font-weight:500; line-height:1.3; letter-spacing:-.025em; }
+    p { margin:0 0 18px; }
+    .sub { color:var(--muted); }
+    .row { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .hero .row { margin-top:32px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:11px 18px; min-height:46px; border:1px solid var(--border); background:var(--fg); color:var(--bg); text-decoration:none; font:14px/1.5 var(--mono); }
+    .btn.outline { background:transparent; color:var(--fg); }
+    .btn:hover { background:var(--accent); border-color:var(--accent); color:#080808; }
+    .grid { display:grid; gap:0; }
+    .cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .card { padding:26px; border:1px solid var(--border); background:transparent; min-width:0; }
+    section[aria-labelledby="snapshot-title"] { padding:0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    section[aria-labelledby="snapshot-title"] .card { border:0; padding:24px 32px 24px 0; }
+    section[aria-labelledby="snapshot-title"] .card + .card { border-left:1px solid var(--border); padding-left:32px; }
+    section[aria-labelledby="snapshot-title"] h3 { font:14px/1.5 var(--mono); }
+    #projects { padding-top:56px; }
+    #home > section > h2 { margin:0 0 24px !important; font-size:28px !important; }
+    #projects > .grid { display:block; counter-reset:project; border-top:0; }
+    #projects article { position:relative; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) 136px; gap:12px 32px; padding:28px 0 28px 54px; border:0; border-bottom:1px solid var(--border); counter-increment:project; }
+    #projects article::before { content:counter(project,decimal-leading-zero); position:absolute; left:0; top:30px; font:13px/1.5 var(--mono); color:var(--muted); }
+    #projects article > .tag { grid-column:1; margin:0; }
+    #projects article h3 { grid-column:1; grid-row:2 / span 2; margin:0; max-width:380px; }
+    #projects article > p:not(.tag) { grid-column:2; grid-row:1 / span 2; color:var(--muted); margin:0; }
+    #projects article .inline { grid-column:2; grid-row:3; }
+    #projects article .row { grid-column:3; grid-row:1 / span 3; align-self:center; margin:0; }
+    #projects article .btn { width:100%; }
+    ul.inline { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px 14px; }
+    ul.inline li { font:13px/1.6 var(--mono); color:var(--muted); }
+    #projects ul.inline li:not(:last-child)::after { content:" /"; padding-left:10px; color:#777777; }
+    #skills { padding-top:56px; }
+    #skills .grid { border-top:1px solid var(--border); border-left:1px solid var(--border); }
+    #skills .card { border:0; border-right:1px solid var(--border); border-bottom:1px solid var(--border); }
+    #skills h3 { font:16px/1.4 var(--mono); }
+    #skills .inline { gap:8px; }
+    #skills li { padding:4px 8px; border:1px solid #555555; }
+    #about { display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:48px 0; margin-top:24px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    #about p { max-width:760px; margin:0; font-size:18px; }
+    #contact { padding:44px 0 60px; }
+    footer { border-top:1px solid var(--border); padding:24px 40px; font:13px/1.5 var(--mono); color:var(--muted); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    .route { display:none; }
+    .route:target,.route.active { display:block; }
+    .route:not(#home) { padding:40px 0 72px; }
+    .route:not(#home) > h2 { margin:40px 0 28px !important; max-width:950px; font:500 clamp(30px,4.5vw,56px)/1.12 Arial,Helvetica,sans-serif !important; letter-spacing:-.045em; }
+    .route:not(#home) > .card { padding:28px 32px; }
+    .route:not(#home) > .card p,.route:not(#home) > .card ul { max-width:900px; }
+    .route:not(#home) > .card p:last-child { margin-bottom:0; font:14px/1.7 var(--mono); }
+    .gallery { display:grid; gap:24px; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:32px !important; }
+    figure { margin:0; min-width:0; }
+    .gallery img { display:block; width:100%; height:360px; object-fit:contain; padding:12px; border:1px solid var(--border); background:#fff; }
+    figcaption { padding:10px 0; font:13px/1.5 var(--mono); color:var(--muted); border-bottom:1px solid var(--border); }
+    #ios-details .gallery { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    #ios-details .gallery img { height:460px; }
+    @media (max-width:900px) {
+      .container { width:calc(100% - 40px); }
+      nav { align-items:flex-start; flex-direction:column; gap:16px; padding-block:18px; }
+      nav .links { gap:24px; }
+      .hero { padding-top:48px; }
+      #projects article { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px 24px; }
+      #projects article .row { grid-column:1; grid-row:4; justify-self:start; margin-top:6px; }
+      #projects article h3 { grid-row:2 / span 2; }
+      #about { grid-template-columns:1fr 2fr; gap:24px; }
+    }
+    @media (max-width:580px) {
+      .hero { padding:38px 0; }
+      .cols-2 { grid-template-columns:1fr; }
+      section[aria-labelledby="snapshot-title"] .card { padding:20px 0; }
+      section[aria-labelledby="snapshot-title"] .card + .card { border-left:0; border-top:1px solid var(--border); padding:20px 0; }
+      #projects article { display:flex; flex-direction:column; padding:24px 0 24px 38px; gap:14px; }
+      #projects article::before { top:25px; }
+      #projects article .row { align-self:flex-start; }
+      #projects article h3 { font-size:24px; }
+      #about { display:block; }
+      #about p { font-size:16px; }
+      .gallery,#ios-details .gallery { grid-template-columns:1fr; }
+      .gallery img { height:auto; max-height:520px; }
+      #ios-details .gallery img { height:460px; }
+      .route:not(#home) > .card { padding:20px; }
+      footer { padding-inline:20px; }
+      #contact .row { align-items:flex-start; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 
-    /* Simple router */
-    .route{ display:none; }
-    /* Show the currently targeted section even if JS fails */
-    .route:target{ display:block; }
-    .route.active{ display:block; }
+    #about.hero { display:grid; grid-template-columns:minmax(240px, .8fr) minmax(0, 1.3fr); align-items:center; gap:56px; margin:0; padding:48px 0; border:0; }
+    .portrait { display:block; width:100%; max-width:380px; height:auto; border:1px solid var(--border); padding:8px; }
+    .hero-about .tag { display:block; margin-bottom:20px; }
+    .hero-about h1 { font:500 30px/1.2 var(--mono); letter-spacing:-.06em; margin:0 0 22px; }
+    #about.hero p { font-size:18px; line-height:1.7; }
+    @media (max-width:900px) { #about.hero { gap:28px; } #about.hero p { font-size:16px; } }
+    @media (max-width:640px) { #about.hero { grid-template-columns:1fr; padding:32px 0; } .portrait { max-width:320px; } }
 
-    /* Gallery */
-    .gallery{ display:grid; gap:10px; grid-template-columns:1fr 1fr; }
-    @media (min-width:760px){ .gallery{ grid-template-columns:repeat(3,1fr); } }
-    .gallery img{ width:100%; height:220px; object-fit:cover; border-radius:10px; border:1px solid var(--border); background:#e5e7eb; }
-    figure{ margin:0; }
-    figcaption{ font-size:12px; color:var(--muted); margin-top:6px; }
+
+    /* Homepage heading accents. */
+    .hero-about h1,
+    #home > #projects > h2,
+    #home > #skills > h2 {
+      padding:10px 16px;
+      color:#f1f5f5;
+      font:600 20px/1.4 var(--mono);
+      letter-spacing:-.025em;
+      border:0;
+    }
+    .hero-about h1 { background:#254951; margin-bottom:22px; }
+    #home > #projects > h2 { background:#285965; font-size:20px !important; margin:0 0 20px !important; }
+    #home > #skills > h2 { background:#354c43; font-size:20px !important; margin:0 0 20px !important; }
+
+    /* Compact spacing while preserving readable text and touch targets. */
+    nav { min-height:64px; }
+    section { padding:24px 0; }
+    #about.hero { grid-template-columns:minmax(220px,.7fr) minmax(0,1.3fr); padding:32px 0; gap:32px; }
+    .portrait { max-width:280px; }
+    #about.hero p { font-size:16px; line-height:1.6; }
+    .hero-about .tag { margin-bottom:12px; }
+    .hero-about h1 { margin-bottom:16px; }
+    .hero .row { margin-top:18px; }
+    .btn { min-height:44px; padding:9px 14px; }
+    #projects,#skills { padding-top:32px; }
+    #home > #projects > h2,#home > #skills > h2 { margin-bottom:14px !important; }
+    .hero-about h1,#home > #projects > h2,#home > #skills > h2 { padding:8px 14px; }
+    #projects article { padding-top:20px; padding-bottom:20px; gap:8px 24px; }
+    #projects article::before { top:22px; }
+    #projects article h3 { font-size:20px; }
+    #skills .card { padding:20px; }
+    footer { padding-block:20px; text-align:center; }
+    @media (max-width:900px) { nav { padding-block:14px; gap:12px; } #about.hero { gap:24px; } }
+    @media (max-width:640px) { #about.hero { grid-template-columns:1fr; padding:24px 0; } .portrait { max-width:260px; } }
+    @media (max-width:580px) { #projects article { gap:10px; } }
+
+    /* Compact project detail pages. */
+    .route:not(#home) { padding:24px 0 40px; }
+    .route:not(#home) > h2 { margin:24px 0 18px !important; font-size:clamp(28px,3.3vw,40px) !important; }
+    .route:not(#home) > .card { padding:20px 24px; }
+    .route:not(#home) .card p { margin-bottom:12px; }
+    .route:not(#home) .card ul { margin-block:10px 14px; padding-left:24px; }
+    .route:not(#home) .card h3 { margin-bottom:8px; font-size:20px; }
+    .route:not(#home) > section { padding:18px 0; }
+    .route:not(#home) > section > h3 { margin-bottom:10px; font-size:20px; }
+    .route:not(#home) .gallery { gap:16px; margin-top:18px !important; }
+    .route:not(#home) .gallery img { height:280px; padding:8px; }
+    .route:not(#home) figcaption { margin:0; padding:6px 0; }
+    #ios-details .gallery img { height:360px; }
+    @media (max-width:580px) {
+      .route:not(#home) > .card { padding:16px; }
+      .route:not(#home) .gallery img { height:auto; max-height:420px; }
+      #ios-details .gallery img { height:340px; }
+    }
+
+    /* Dense, forum-inspired subsection treatment. */
+    #projects article { padding-top:14px; padding-bottom:14px; gap:5px 20px; }
+    #projects article::before { top:16px; }
+    #projects article h3 { font-size:18px; line-height:1.3; }
+    #projects article > p:not(.tag) { line-height:1.45; }
+    #projects article .tag { font-size:12px; letter-spacing:.025em; }
+    #projects article:nth-child(even) { background:#101313; }
+    #projects article .btn { min-height:44px; padding:8px 0; border:0; background:transparent; color:#a7c6d0; text-decoration:underline; text-underline-offset:3px; justify-content:flex-start; }
+    #projects article .btn:hover { color:#d6eaf0; }
+    #skills .card { padding:14px; }
+    #skills h3 { margin:-14px -14px 10px; padding:6px 12px; background:#1c3029; font:600 14px/1.4 var(--mono); color:#c1d6c8; }
+    #skills .inline { gap:4px 12px; }
+    #skills li { border:0; padding:0; }
+    .route:not(#home) .card h3 { font:600 15px/1.4 var(--mono); background:#20363b; color:#d0e2e5; padding:6px 10px; margin:14px 0 8px; }
+    .route:not(#home) > section { padding:12px 0; }
+    .route:not(#home) > section > h3 { font:600 15px/1.4 var(--mono); background:#20363b; color:#d0e2e5; padding:6px 10px; margin:0 0 8px; }
+    .route:not(#home) .card p { margin-bottom:8px; line-height:1.5; }
+    .route:not(#home) .card ul { margin-block:8px 10px; line-height:1.5; }
+    .route:not(#home) .gallery { gap:12px; margin-top:12px !important; }
+    @media (max-width:580px) { #projects article { gap:8px; } }
+
+    /* Slim section headers. */
+    .hero-about h1,
+    #home > #projects > h2,
+    #home > #skills > h2 {
+      padding:5px 10px;
+      font-size:16px !important;
+      line-height:1.3;
+      margin-bottom:10px !important;
+    }
+    #skills h3,
+    .route:not(#home) .card h3,
+    .route:not(#home) > section > h3 {
+      padding-top:4px;
+      padding-bottom:4px;
+      font-size:14px;
+      line-height:1.3;
+    }
+    .portrait { max-width:240px; }
+    .route:not(#home) .card h3 {
+      background:transparent;
+      color:var(--fg);
+      padding:0;
+      margin:16px 0 8px;
+    }
+
+    /* Charcoal fades into black beneath the page content. */
+    body {
+      min-height:100vh;
+      background-color:#080808;
+      background-image:linear-gradient(to bottom, #303030 0, #212121 270px, #141414 630px, #080808 1150px);
+      background-repeat:no-repeat;
+    }
+    header { background:#303030; }
+    #projects article:nth-child(even) { background:rgba(255,255,255,.025); }
+
+    /* Project entries read as compact posts, rather than a column table. */
+    #projects article {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 136px;
+      gap:4px 24px;
+      padding:14px 12px;
+      border-bottom:1px solid #414141;
+    }
+    #projects article::before { content:none; }
+    #projects article > .tag {
+      grid-column:1;
+      grid-row:2;
+      font:12px/1.4 var(--mono);
+      text-transform:none;
+      letter-spacing:0;
+      color:#a2b4b8;
+    }
+    #projects article h3 {
+      grid-column:1;
+      grid-row:1;
+      max-width:none;
+      font:600 17px/1.35 Arial,Helvetica,sans-serif;
+      letter-spacing:0;
+      color:#d2e3e7;
+    }
+    #projects article > p:not(.tag) {
+      grid-column:1;
+      grid-row:3;
+      margin:3px 0 0;
+      max-width:900px;
+      color:#dedede;
+      font-size:16px;
+      line-height:1.4;
+    }
+    #projects article .inline { grid-column:1; grid-row:4; gap:4px 12px; margin-top:3px; }
+    #projects article .inline li { font:12px/1.5 var(--mono); }
+    #projects article .row { grid-column:2; grid-row:1 / span 4; align-self:center; margin:0; }
+    #projects article .btn { width:auto; }
+    @media (max-width:580px) {
+      #projects article { grid-template-columns:1fr; gap:4px; padding:12px 8px; }
+      #projects article .row { grid-column:1; grid-row:5; margin-top:2px; }
+    }
+
+    .route:not(#home) > h2 {
+      max-width:none;
+      margin:18px 0 12px !important;
+      padding:7px 12px;
+      background:#285965;
+      color:#f1f5f5;
+      font:600 18px/1.4 var(--mono) !important;
+      letter-spacing:-.025em;
+    }
+
+    .affiliations { display:flex; flex-wrap:wrap; align-items:center; gap:16px 28px; margin:14px 0 16px; }
+    .affiliation { display:flex; align-items:center; gap:10px; font:13px/1.4 var(--mono); color:var(--fg); }
+    .affiliation img { display:block; width:36px; height:40px; object-fit:contain; }
+    .affiliation .ubc-logo { background:transparent; padding:3px; }
+    .affiliation .amd-logo { width:72px; height:58px; }
+    .project-video { display:block; width:100%; max-width:800px; aspect-ratio:16 / 9; height:auto; border:1px solid var(--border); background:#000; }
+    .video-link { margin:8px 0 0; font:13px/1.5 var(--mono); color:var(--muted); }
+
+    .project-strip { padding:0 0 8px; }
+    .strip-controls { display:flex; justify-content:flex-end; margin-bottom:6px; }
+    .strip-toggle { background:transparent; border:0; color:var(--muted); font:12px/1.5 var(--mono); padding:6px 0; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+    .strip-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .strip-window { overflow-x:auto; border-block:0; padding:10px 0; }
+    .strip-track { display:flex; width:max-content; }
+    .strip-group { display:flex; flex-shrink:0; gap:12px; padding-right:12px; }
+    .strip-group a { display:block; flex:0 0 220px; }
+    .strip-group img { display:block; width:220px; height:150px; object-fit:contain; background:#111; border:1px solid #444; }
+    .project-strip.is-animated .strip-window { overflow:hidden; }
+    .project-strip.is-animated .strip-track { animation:project-scroll 65s linear infinite; }
+    .strip-window:hover .strip-track,.strip-window:focus-within .strip-track,.project-strip.is-paused .strip-track { animation-play-state:paused; }
+    @keyframes project-scroll { to { transform:translateX(-50%); } }
+    @media (prefers-reduced-motion:reduce) {
+      .project-strip.is-animated .strip-track { animation:none; }
+      .project-strip.is-animated .strip-window { overflow-x:auto; }
+      .strip-group[aria-hidden="true"] { display:none; }
+      .strip-controls { display:none; }
+    }
   </style>
 </head>
 <body>
   <header>
     <nav class="container">
-      <strong>Jamie Kang - Engineering Portfolio</strong>
+      <strong>Jamie Kang</strong>
       <div class="links">
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
@@ -71,40 +337,62 @@
     <!-- ==================== HOME ==================== -->
     <section id="home" class="route active" aria-label="Home">
       <!-- Hero -->
-      <section class="hero">
-        <span class="tag">UBC Electrical Engineering Student</span>
-        <h1>Building reliable power, embedded, and hardware projects</h1>
-        <!-- <p class="sub">Check out my projects below - click on "More details" for images and explanations.</p> -->
+      <section class="hero" id="about" aria-label="About Jamie">
+        <img class="portrait" src="images/jamie-portrait-cropped.png" alt="Jamie by the waterfront with the city skyline behind him" width="321" height="345" />
+        <div class="hero-about">
+          
+          <h1>About</h1>
+          <div class="affiliations" aria-label="Education and work">
+            <div class="affiliation"><img class="ubc-logo" src="images/ubc-logo.png" alt="UBC logo" /><span>UBC student</span></div>
+            <div class="affiliation"><img class="amd-logo" src="images/amd-logo.svg" alt="AMD logo" /><span>AMD intern</span></div>
+          </div>
+          <p class="sub">I’m Jamie, an Electrical Engineering student at UBC and an IP Systems Engineer intern at AMD, where I work on silicon validation and debugging. I enjoy building hardware and writing the firmware that makes it work. Outside engineering, I spend my time learning about the humanities and playing games.</p>
         <div class="row">
           <!-- <a class="btn" href="resume.pdf" download>Download Resume</a> -->
-          <a class="btn outline" href="#contact">Contact</a>
           <a class="btn outline" href="https://github.com/jamiekang7" target="_blank" rel="noreferrer">GitHub</a>
           <a class="btn outline" href="https://www.linkedin.com/in/jamiekang7" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
-      </section>
-
-      <!-- Quick snapshot -->
-      <section aria-labelledby="snapshot-title" class="grid cols-2">
-        <div class="card">
-          <h3 id="snapshot-title">Overview</h3>
-          <p class="sub" style="margin:0">Vancouver, BC • Open to relocating • Co‑op/Internship (2025–2026) • Power • Embedded • Hardware</p>
-        </div>
-        <div class="card">
-          <h3>What I value</h3>
-          <p class="sub" style="margin:0">Clear communication, collaborative teams, and creative problem solving</p>
         </div>
       </section>
 
-      <!-- Projects -->
+      <section class="project-strip" aria-label="Project image gallery">
+        <div class="strip-controls"><button class="strip-toggle" type="button" aria-pressed="false">Pause gallery</button></div>
+        <div class="strip-window">
+          <div class="strip-track">
+            <div class="strip-group">
+              <a href="#piano-details" aria-label="View Piano-playing robot"><img src="images/piano/photo-0210.jpg" alt="Piano-playing robot" width="220" height="150" loading="lazy" /></a>
+              <a href="#piano-details" aria-label="View Updated motor driver PCB"><img src="images/piano/motor-updated-render.png" alt="Updated motor driver PCB" width="220" height="150" loading="lazy" /></a>
+              <a href="#piano-details" aria-label="View Piano robot solenoid driver board"><img src="images/piano/eight-solenoids.png" alt="Piano robot solenoid driver board" width="220" height="150" loading="lazy" /></a>
+              <a href="#haptic-details" aria-label="View Haptic knob prototype"><img src="images/haptic/prototype.png" alt="Haptic knob prototype" width="220" height="150" loading="lazy" /></a>
+              <a href="#haptic-details" aria-label="View Haptic knob PCB"><img src="images/haptic/pcb-render.png" alt="Haptic knob PCB" width="220" height="150" loading="lazy" /></a>
+              <a href="#haptic-details" aria-label="View Haptic knob control architecture"><img src="images/haptic/control-architecture.png" alt="Haptic knob control architecture" width="220" height="150" loading="lazy" /></a>
+              <a href="#nn-details" aria-label="View Neural network accelerator system diagram, part 1"><img src="images/nn-1.jpg" alt="Neural network accelerator system diagram, part 1" width="220" height="150" loading="lazy" /></a>
+              <a href="#nn-details" aria-label="View Neural network accelerator system diagram, part 2"><img src="images/nn-2.jpg" alt="Neural network accelerator system diagram, part 2" width="220" height="150" loading="lazy" /></a>
+              <a href="#buck-details" aria-label="View Assembled buck converter PCB"><img src="images/buck-2.jpg" alt="Assembled buck converter PCB" width="220" height="150" loading="lazy" /></a>
+              <a href="#buck-details" aria-label="View Buck converter PCB layout"><img src="images/buck-1.jpg" alt="Buck converter PCB layout" width="220" height="150" loading="lazy" /></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- Projects -->
       <section id="projects">
         <h2 style="margin:0 0 10px 0; font-size:22px;">Projects</h2>
         <div class="grid cols-2" role="list">
           <article class="card" role="listitem">
-            <p class="tag">Power Electronics</p>
-            <h3>48V → 24V Buck Converter PCB (TI LM5116)</h3>
-            <p>High‑current DC/DC with thermal relief and efficiency tests for robotics distribution.</p>
-            <ul class="inline"><li>Altium</li><li>LM5116</li><li>Oscilloscope</li><li>Load step</li></ul>
-            <div class="row"><a class="btn outline" href="#buck-details" onclick="event.preventDefault(); location.hash='#buck-details'; if (typeof render==='function') render();">More details</a></div>
+            <p class="tag">Robotics / Power Electronics</p>
+            <h3>Piano-Playing Robot</h3>
+            <p>Designed and debugged H-bridge and solenoid driver PCBs, integrated actuator electronics with a two-handed PID-controlled robot, and encoded music datasets for autonomous performance.</p>
+            <ul class="inline"><li>PCB Design</li><li>Power Electronics</li><li>Control Theory</li><li>Hardware Debugging</li><li>LTspice</li></ul>
+            <div class="row"><a class="btn outline" href="#piano-details">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Haptics / Embedded Control</p>
+            <h3>Haptic Knob (Simulating Force on an Electron)</h3>
+            <p>Firmware co-lead designing the control system and electrical-to-mechanical theory, and implementing ESP32-S3 haptic control with FreeRTOS and SimpleFOC.</p>
+            <ul class="inline"><li>ESP32-S3</li><li>FreeRTOS</li><li>SimpleFOC</li><li>C/C++</li></ul>
+            <div class="row"><a class="btn outline" href="#haptic-details">More details</a></div>
           </article>
 
           <article class="card" role="listitem">
@@ -116,11 +404,19 @@
           </article>
 
           <article class="card" role="listitem">
-            <p class="tag">Audio / Embedded</p>
-            <h3>Bluetooth Speaker (Class‑AB + ESP32)</h3>
-            <p>Custom Class‑AB amplifier with preamp, tone control, and ESP32 Bluetooth audio + controls.</p>
-            <ul class="inline"><li>Class‑AB</li><li>ESP32</li><li>PCB</li><li>BT A2DP</li></ul>
-            <div class="row"><a class="btn outline" href="#speaker-details" onclick="event.preventDefault(); location.hash='#speaker-details'; if (typeof render==='function') render();">More details</a></div>
+            <p class="tag">Digital / FPGA</p>
+            <h3>Reduced Instruction Set (RISC) Computer</h3>
+            <p>Extended simple RISC CPU on DE1‑SoC; SystemVerilog + testbenches; top marks across labs.</p>
+            <ul class="inline"><li>SystemVerilog</li><li>Quartus</li><li>ModelSim</li><li>DE1‑SoC</li></ul>
+            <div class="row"><a class="btn outline" href="#cpu-details" onclick="event.preventDefault(); location.hash='#cpu-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Power Electronics</p>
+            <h3>48V → 24V Buck Converter PCB (TI LM5116)</h3>
+            <p>High‑current DC/DC with thermal relief and efficiency tests for robotics distribution.</p>
+            <ul class="inline"><li>Altium</li><li>LM5116</li><li>Oscilloscope</li><li>Load step</li></ul>
+            <div class="row"><a class="btn outline" href="#buck-details" onclick="event.preventDefault(); location.hash='#buck-details'; if (typeof render==='function') render();">More details</a></div>
           </article>
 
           <article class="card" role="listitem">
@@ -132,6 +428,22 @@
           </article>
 
           <article class="card" role="listitem">
+            <p class="tag">Controls / Manufacturing</p>
+            <h3>Reflow Oven Controller</h3>
+            <p>MCU‑based temperature control with K‑type thermocouple + SSR; multi‑stage FSM reflow profiles.</p>
+            <ul class="inline"><li>Assembly</li><li>SSR</li><li>Thermocouple</li><li>FSM</li></ul>
+            <div class="row"><a class="btn outline" href="#reflow-details" onclick="event.preventDefault(); location.hash='#reflow-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
+            <p class="tag">Audio / Embedded</p>
+            <h3>Bluetooth Speaker (Class‑AB + ESP32)</h3>
+            <p>Custom Class‑AB amplifier with preamp, tone control, and ESP32 Bluetooth audio + controls.</p>
+            <ul class="inline"><li>Class‑AB</li><li>ESP32</li><li>PCB</li><li>BT A2DP</li></ul>
+            <div class="row"><a class="btn outline" href="#speaker-details" onclick="event.preventDefault(); location.hash='#speaker-details'; if (typeof render==='function') render();">More details</a></div>
+          </article>
+
+          <article class="card" role="listitem">
             <p class="tag">Power / Product</p>
             <h3>Wireless Charging Power Bank</h3>
             <p>Qi‑enabled bank with BMS/charging IC, LED capacity indicator, and buck/boost regulation.</p>
@@ -140,27 +452,11 @@
           </article>
 
           <article class="card" role="listitem">
-            <p class="tag">Digital / FPGA</p>
-            <h3>Reduced Instruction Set (RISC) Computer</h3>
-            <p>Extended simple RISC CPU on DE1‑SoC; SystemVerilog + testbenches; top marks across labs.</p>
-            <ul class="inline"><li>SystemVerilog</li><li>Quartus</li><li>ModelSim</li><li>DE1‑SoC</li></ul>
-            <div class="row"><a class="btn outline" href="#cpu-details" onclick="event.preventDefault(); location.hash='#cpu-details'; if (typeof render==='function') render();">More details</a></div>
-          </article>
-
-          <article class="card" role="listitem">
             <p class="tag">iOS / Software</p>
             <h3>Empire — Productivity App (iOS)</h3>
-            <p>Launched on App Store; 6,890+ downloads, 4.9★ avg; Swift + Obj‑C for secure state handling.</p>
+            <p>Launched on App Store; 10k+ downloads, 4.9★ avg; Swift + Obj‑C for secure state handling.</p>
             <ul class="inline"><li>Swift</li><li>Objective‑C</li><li>App Store</li></ul>
             <div class="row"><a class="btn outline" href="#ios-details" onclick="event.preventDefault(); location.hash='#ios-details'; if (typeof render==='function') render();">More details</a></div>
-          </article>
-
-          <article class="card" role="listitem">
-            <p class="tag">Controls / Manufacturing</p>
-            <h3>Reflow Oven Controller</h3>
-            <p>MCU‑based temperature control with K‑type thermocouple + SSR; multi‑stage FSM reflow profiles.</p>
-            <ul class="inline"><li>Assembly</li><li>SSR</li><li>Thermocouple</li><li>FSM</li></ul>
-            <div class="row"><a class="btn outline" href="#reflow-details" onclick="event.preventDefault(); location.hash='#reflow-details'; if (typeof render==='function') render();">More details</a></div>
           </article>
         </div>
       </section>
@@ -170,41 +466,35 @@
         <h2 style="margin:10px 0; font-size:22px;">Skills</h2>
         <div class="grid cols-2">
           <div class="card">
-            <h3>Electrical</h3>
-            <ul class="inline"><li>Power electronics</li><li>Buck/boost</li><li>Oscilloscope</li><li>PCB bring‑up</li></ul>
+            <h3>Silicon Validation &amp; Debug</h3>
+            <ul class="inline"><li>Post-silicon validation</li><li>Register-level testing</li><li>SoC interconnects</li><li>JTAG</li><li>Lauterbach TRACE32</li><li>Aardvark I²C/SPI</li><li>Firmware debug</li><li>DFT / scan dumps</li></ul>
           </div>
           <div class="card">
-            <h3>Digital/FPGA</h3>
-            <ul class="inline"><li>Verilog</li><li>Quartus</li><li>Avalon Interface</li><li>SDRAM/PLL</li></ul>
+            <h3>PCB &amp; Power Electronics</h3>
+            <ul class="inline"><li>Altium</li><li>LTspice</li><li>PCB design / bring-up</li><li>Buck/boost converters</li><li>H-bridge / solenoid drivers</li><li>MOSFET gate drives</li><li>Flyback / transient protection</li><li>Decoupling / RC filtering</li><li>Thermal validation</li></ul>
           </div>
           <div class="card">
-            <h3>Embedded</h3>
-            <ul class="inline"><li>ESP32</li><li>PIC32</li><li>STM32</li><li>UART/SPI/I2C</li><li>Bootloaders</li></ul>
+            <h3>Digital &amp; FPGA</h3>
+            <ul class="inline"><li>SystemVerilog / Verilog</li><li>RTL design</li><li>CPU architecture</li><li>FSM design</li><li>DMA / dot-product accelerators</li><li>Avalon bus</li><li>SDRAM / PLL</li><li>Quartus / ModelSim</li><li>RTL / gate-level testbenches</li><li>DE1-SoC</li></ul>
           </div>
           <div class="card">
-            <h3>Software</h3>
-            <ul class="inline"><li>C/C++</li><li>Python</li><li>Git/GitHub</li><li>Java</li><li>Swift</li></ul>
+            <h3>Embedded Systems</h3>
+            <ul class="inline"><li>C/C++</li><li>FreeRTOS</li><li>ESP32-S3</li><li>STM32 / PIC32</li><li>ARM / 8051 Assembly</li><li>UART / SPI / I²C</li><li>Interrupts / watchdogs</li><li>Bootloaders</li></ul>
+          </div>
+          <div class="card">
+            <h3>Controls &amp; Instrumentation</h3>
+            <ul class="inline"><li>PID control</li><li>SimpleFOC / BLDC control</li><li>PWM</li><li>Encoder feedback</li><li>Current sensing</li><li>Oscilloscope / multimeter</li><li>Electronic load</li><li>MATLAB</li><li>Hardware debugging</li></ul>
+          </div>
+          <div class="card">
+            <h3>Software &amp; Tools</h3>
+            <ul class="inline"><li>Python</li><li>Git / GitHub</li><li>Swift / Objective-C</li><li>Java</li><li>HTML / CSS / JavaScript</li><li>Matplotlib / Pandas</li><li>Test automation</li><li>App Store releases</li></ul>
           </div>
         </div>
       </section>
 
-      <!-- About -->
-      <section id="about">
-        <h2 style="margin:10px 0; font-size:22px;">About</h2>
-        <p class="sub">Hello, I’m Jamie, a third-year Electrical Engineering student at UBC. I have a deep appreciation for our technological abundance and wish to work on hardware, the essential layer that makes truly transformative products possible. Aside from engineering work, I spend my time learning the humanities, exercising, and walking in nature. I thrive in collaborative and lively workspaces, and I am open to new opportunities where I can contribute meaningfully. If my work interests you, I’d be glad to connect!
-</p>
-      </section>
 
-      <!-- Contact -->
-      <section id="contact">
-        <h2 style="margin:10px 0; font-size:22px;">Contact</h2>
-        <div class="row">
-          <a class="btn" href="mailto:jamiekang0@gmail.com">jamiekang0@gmail.com</a>
-          <a class="btn outline" href="https://www.linkedin.com/in/jamiekang7" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn outline" href="https://github.com/jamiekang7" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-      </section>
-    </section>
+
+</section>
 
         <!-- ==================== DETAILS: BUCK ==================== -->
     <section id="buck-details" class="route" aria-label="48V to 24V Buck Converter details">
@@ -396,7 +686,7 @@ project documentation, and validated performance with an oscilloscope and variab
       <a class="btn outline" href="#home">← Back to Projects</a>
       <h2 style="margin:10px 0; font-size:22px;">Empire — Productivity Manager (iOS)</h2>
       <div class="card">
-        <p>August 2022 – Present. Developed and launched on the iOS App Store using Swift; 7,670+ downloads, 4.9/5 average rating.</p>
+        <p>August 2022 – Present. Developed and launched on the iOS App Store using Swift; 10k+ downloads, 4.9/5 average rating.</p>
         <ul>
           <li>Low‑level proprietary algorithm adjusts in‑app currency based on device state</li>
           <li>Used Objective‑C functions to detect when protected data became unavailable</li>
@@ -462,6 +752,146 @@ project documentation, and validated performance with an oscilloscope and variab
       </div>
     </section>
 
+
+    <section id="haptic-details" class="route" aria-label="Haptic Knob project details">
+      <a class="btn outline" href="#projects">← Back to Projects</a>
+      <h2>Haptic Knob (Simulating Force on an Electron)</h2>
+      <div class="card">
+        <p class="tag">UBC Open Robotics · Firmware Co-lead</p>
+        <p>A motorized knob that turns electrical circuit behavior into physical feedback. Rotating it lets users feel resistance, spring-like restoring force, and inertia through a mechanical analogy: voltage corresponds to torque, current to angular velocity, and charge to angular displacement. As firmware co-lead, I designed the control system and its high-level theory, including how electrical circuit behavior maps to mechanical torque feedback. I also implemented the embedded firmware and designed the control loops, encoder feedback, and current-sensing integration.</p>
+        <h3>Firmware architecture</h3>
+        <ul>
+          <li>Developed C/C++ firmware for the ESP32-S3 using FreeRTOS and SimpleFOC. The control architecture combines the inner motor loop with an outer haptic-model update every fifth cycle, holding the latest current command between model updates.</li>
+          <li>Organized measured state, runtime settings, motor commands, and fault flags through shared-state interfaces, with separate telemetry and watchdog modules.</li>
+        </ul>
+        <h3>Motor control and feedback</h3>
+        <ul>
+          <li>Integrated an MT6701 magnetic encoder over SSI/SPI and MCP3204-based phase-current sensing on separate SPI buses.</li>
+          <li>Implemented FOC-based BLDC torque control using a six-PWM driver interface. The hardware layer configures 30 kHz PWM and d/q current-loop PID gains, translating model torque requests into bounded q-axis current commands.</li>
+        </ul>
+        <h3>Circuit models and tuning</h3>
+        <ul>
+          <li>The model code includes resistor, capacitor, inductor, diode, and RLC modes. It uses velocity-dependent resistance, displacement-based restoring torque, filtered acceleration feedback, and state updates for virtual RLC current and capacitor voltage.</li>
+          <li>Filtering, deadbands, damping, and torque/current limits condition the feedback commands. Serial telemetry and command handlers support model selection, angle zeroing, parameter adjustment, and per-mode PID tuning.</li>
+        </ul>
+        <p><strong>Tech:</strong> ESP32-S3, C/C++, FreeRTOS, SimpleFOC, PlatformIO, BLDC, FOC, SPI/SSI, MT6701, MCP3204, current sensing, PID</p>
+      </div>
+      <div class="row"><a class="btn outline" href="https://github.com/Haptic-Knob-by-Open-Robotics/Haptic-Knob" target="_blank" rel="noopener">View GitHub repository</a></div>
+      <section aria-label="Control architecture">
+        <h3>Control architecture</h3>
+        <div class="gallery">
+          <figure><a href="images/haptic/control-architecture.png" target="_blank" rel="noopener" aria-label="Open full-size image: System architecture and control-loop design"><img src="images/haptic/control-architecture.png" alt="System architecture and control-loop design" loading="lazy" /></a><figcaption>System architecture and control-loop design</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="Prototype and mechanical design">
+        <h3>Prototype and mechanical design</h3>
+        <div class="gallery">
+          <figure><a href="images/haptic/prototype.png" target="_blank" rel="noopener" aria-label="Open full-size image: Assembled PCB and knob prototype"><img src="images/haptic/prototype.png" alt="Assembled PCB and knob prototype" loading="lazy" /></a><figcaption>Assembled PCB and knob prototype</figcaption></figure>
+          <figure><a href="images/haptic/knob-assembly.png" target="_blank" rel="noopener" aria-label="Open full-size image: Knob and motor mount CAD"><img src="images/haptic/knob-assembly.png" alt="Knob and motor mount CAD" loading="lazy" /></a><figcaption>Knob and motor mount CAD</figcaption></figure>
+          <figure><a href="images/haptic/enclosure-overview.png" target="_blank" rel="noopener" aria-label="Open full-size image: Enclosure CAD overview"><img src="images/haptic/enclosure-overview.png" alt="Enclosure CAD overview" loading="lazy" /></a><figcaption>Enclosure CAD overview</figcaption></figure>
+          <figure><a href="images/haptic/enclosure.png" target="_blank" rel="noopener" aria-label="Open full-size image: Enclosure CAD assembly"><img src="images/haptic/enclosure.png" alt="Enclosure CAD assembly" loading="lazy" /></a><figcaption>Enclosure CAD assembly</figcaption></figure>
+          <figure><a href="images/haptic/enclosure-internal.png" target="_blank" rel="noopener" aria-label="Open full-size image: Enclosure CAD internal view"><img src="images/haptic/enclosure-internal.png" alt="Enclosure CAD internal view" loading="lazy" /></a><figcaption>Enclosure CAD internal view</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="PCB design">
+        <h3>PCB design</h3>
+        <div class="gallery">
+          <figure><a href="images/haptic/pcb-render.png" target="_blank" rel="noopener" aria-label="Open full-size image: PCB 3D render"><img src="images/haptic/pcb-render.png" alt="PCB 3D render" loading="lazy" /></a><figcaption>PCB 3D render</figcaption></figure>
+          <figure><a href="images/haptic/pcb-layout.png" target="_blank" rel="noopener" aria-label="Open full-size image: PCB layout"><img src="images/haptic/pcb-layout.png" alt="PCB layout" loading="lazy" /></a><figcaption>PCB layout</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="Team hardware schematics">
+        <h3>Team hardware schematics</h3>
+        <div class="gallery">
+          <figure><a href="images/haptic/system-schematic.png" target="_blank" rel="noopener" aria-label="Open full-size image: System schematic"><img src="images/haptic/system-schematic.png" alt="System schematic" loading="lazy" /></a><figcaption>System schematic</figcaption></figure>
+          <figure><a href="images/haptic/microcontroller.png" target="_blank" rel="noopener" aria-label="Open full-size image: ESP32-S3 microcontroller schematic"><img src="images/haptic/microcontroller.png" alt="ESP32-S3 microcontroller schematic" loading="lazy" /></a><figcaption>ESP32-S3 microcontroller schematic</figcaption></figure>
+          <figure><a href="images/haptic/motor-driver.png" target="_blank" rel="noopener" aria-label="Open full-size image: BLDC motor driver schematic"><img src="images/haptic/motor-driver.png" alt="BLDC motor driver schematic" loading="lazy" /></a><figcaption>BLDC motor driver schematic</figcaption></figure>
+          <figure><a href="images/haptic/current-sensing.png" target="_blank" rel="noopener" aria-label="Open full-size image: Three-phase current sensing schematic"><img src="images/haptic/current-sensing.png" alt="Three-phase current sensing schematic" loading="lazy" /></a><figcaption>Three-phase current sensing schematic</figcaption></figure>
+          <figure><a href="images/haptic/adc.png" target="_blank" rel="noopener" aria-label="Open full-size image: ADC and current-sense filtering schematic"><img src="images/haptic/adc.png" alt="ADC and current-sense filtering schematic" loading="lazy" /></a><figcaption>ADC and current-sense filtering schematic</figcaption></figure>
+          <figure><a href="images/haptic/encoder.png" target="_blank" rel="noopener" aria-label="Open full-size image: Magnetic rotary encoder schematic"><img src="images/haptic/encoder.png" alt="Magnetic rotary encoder schematic" loading="lazy" /></a><figcaption>Magnetic rotary encoder schematic</figcaption></figure>
+          <figure><a href="images/haptic/power.png" target="_blank" rel="noopener" aria-label="Open full-size image: Power system schematic"><img src="images/haptic/power.png" alt="Power system schematic" loading="lazy" /></a><figcaption>Power system schematic</figcaption></figure>
+        </div>
+      </section>
+    </section>
+
+
+    <section id="piano-details" class="route" aria-label="Piano-Playing Robot project details">
+      <a class="btn outline" href="#projects">← Back to Projects</a>
+      <h2>Piano-Playing Robot</h2>
+      <div class="card">
+        <p class="tag">Jan 2026 – Apr 2026 · ELEC 391 · Robo-Maestro</p>
+        <p>A two-handed robotic system that combines PID-controlled rail positioning with solenoid actuation to perform piano pieces autonomously. My primary responsibility was designing the H-bridge and solenoid driver boards, integrating them with the mechanical and firmware systems, and verifying reliable operation under demanding PID commands.</p>
+        <h3>Actuator board design</h3>
+        <ul>
+          <li>Designed and tested 12 V H-bridge and solenoid driver PCBs, implementing MOSFET gate-drive circuitry, flyback protection, decoupling, and transient suppression.</li>
+          <li>Validated designs in LTspice before schematic capture, PCB layout, and fabrication.</li>
+          <li>Revised the motor PCB to incorporate changes identified during debugging, including additional capacitors, into a cleaner board design.</li>
+          <li>The actuator electronics included a dual H-bridge motor board and separate eight- and four-actuator solenoid boards for the two hands.</li>
+        </ul>
+        <h3>Debugging and system integration</h3>
+        <ul>
+          <li>Bench-tested and debugged actuator PCBs with multimeters and oscilloscopes, then validated operation under 20 kHz PWM.</li>
+          <li>Integrated the boards with the mechanical assemblies and firmware to coordinate rail positioning and solenoid actuation.</li>
+          <li>Checked circuit performance and overheating under high PID demands, focusing on dependable actuator operation during changing motor loads and repeated solenoid switching.</li>
+        </ul>
+        <h3>Music datasets</h3>
+        <p>Created datasets encoding multiple pieces performed by the robot, including <em>Viva la Vida</em>, <em>Swan Lake</em>, and <em>Waltz in A Minor</em>.</p>
+        <p><strong>Tech:</strong> PCB design, power electronics, control theory, hardware debugging, LTspice, MOSFETs, H-bridge, solenoid drivers, 20 kHz PWM, PID, oscilloscope</p>
+      </div>
+      <section aria-label="Robot video">
+        <h3>Robot video</h3>
+        <iframe class="project-video" data-video-id="e4bRwcsB1jE" src="https://www.youtube.com/embed/e4bRwcsB1jE?playsinline=1" title="Piano-Playing Robot video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p class="video-link"><a href="https://youtu.be/e4bRwcsB1jE" target="_blank" rel="noopener">Watch on YouTube</a></p>
+      </section>
+      <section aria-label="Robot photos">
+        <h3>Robot photos</h3>
+        <div class="gallery">
+          <figure><a href="images/piano/photo-0210.jpg" target="_blank" rel="noopener" aria-label="Open full-size image: Integrated robot on the laboratory bench"><img src="images/piano/photo-0210.jpg" alt="Integrated robot on the laboratory bench" loading="lazy" /></a><figcaption>Integrated robot on the laboratory bench</figcaption></figure>
+          <figure><a href="images/piano/complete-robot.jpg" target="_blank" rel="noopener" aria-label="Open full-size image: Complete two-handed robot positioned at the keyboard"><img src="images/piano/complete-robot.jpg" alt="Complete two-handed robot positioned at the keyboard" loading="lazy" /></a><figcaption>Complete two-handed robot positioned at the keyboard</figcaption></figure>
+          <figure><a href="images/piano/photo-0212.jpg" target="_blank" rel="noopener" aria-label="Open full-size image: Electronics enclosure and motor wiring close-up"><img src="images/piano/photo-0212.jpg" alt="Electronics enclosure and motor wiring close-up" loading="lazy" /></a><figcaption>Electronics enclosure and motor wiring close-up</figcaption></figure>
+          <figure><a href="images/piano/photo-0195.jpg" target="_blank" rel="noopener" aria-label="Open full-size image: Full robot assembly and cable routing"><img src="images/piano/photo-0195.jpg" alt="Full robot assembly and cable routing" loading="lazy" /></a><figcaption>Full robot assembly and cable routing</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="Actuator boards">
+        <h3>Actuator boards</h3>
+        <div class="gallery">
+          <figure><a href="images/piano/dual-h-bridge.png" target="_blank" rel="noopener" aria-label="Open full-size image: Fully assembled dual H-bridge motor board"><img src="images/piano/dual-h-bridge.png" alt="Fully assembled dual H-bridge motor board" loading="lazy" /></a><figcaption>Fully assembled dual H-bridge motor board</figcaption></figure>
+          <figure><a href="images/piano/eight-solenoids.png" target="_blank" rel="noopener" aria-label="Open full-size image: Fully assembled eight-actuator solenoid board"><img src="images/piano/eight-solenoids.png" alt="Fully assembled eight-actuator solenoid board" loading="lazy" /></a><figcaption>Fully assembled eight-actuator solenoid board</figcaption></figure>
+          <figure><a href="images/piano/four-solenoids.png" target="_blank" rel="noopener" aria-label="Open full-size image: Fully assembled four-actuator solenoid board"><img src="images/piano/four-solenoids.png" alt="Fully assembled four-actuator solenoid board" loading="lazy" /></a><figcaption>Fully assembled four-actuator solenoid board</figcaption></figure>
+          <figure><a href="images/piano/electrical-integration.png" target="_blank" rel="noopener" aria-label="Open full-size image: Electrical integration with the team motherboard"><img src="images/piano/electrical-integration.png" alt="Electrical integration with the team motherboard" loading="lazy" /></a><figcaption>Electrical integration with the team motherboard</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="PCB layouts and revisions">
+        <h3>PCB layouts and revisions</h3>
+        <div class="gallery">
+          <figure><a href="images/piano/motor-updated-render.png" target="_blank" rel="noopener" aria-label="Open full-size image: Updated motor PCB render decoupling capacitors and RC filter added"><img src="images/piano/motor-updated-render.png" alt="Updated motor PCB render decoupling capacitors and RC filter added" loading="lazy" /></a><figcaption>Updated motor PCB render decoupling capacitors and RC filter added</figcaption></figure>
+          <figure><a href="images/piano/motor-updated-layout.png" target="_blank" rel="noopener" aria-label="Open full-size image: Updated motor PCB layout"><img src="images/piano/motor-updated-layout.png" alt="Updated motor PCB layout" loading="lazy" /></a><figcaption>Updated motor PCB layout</figcaption></figure>
+          <figure><a href="images/piano/motor-original-render.png" target="_blank" rel="noopener" aria-label="Open full-size image: Original dual H-bridge motor PCB render"><img src="images/piano/motor-original-render.png" alt="Original dual H-bridge motor PCB render" loading="lazy" /></a><figcaption>Original dual H-bridge motor PCB render</figcaption></figure>
+          <figure><a href="images/piano/motor-original-layout.png" target="_blank" rel="noopener" aria-label="Open full-size image: Original dual H-bridge motor PCB layout"><img src="images/piano/motor-original-layout.png" alt="Original dual H-bridge motor PCB layout" loading="lazy" /></a><figcaption>Original dual H-bridge motor PCB layout</figcaption></figure>
+          <figure><a href="images/piano/eight-solenoid-render.png" target="_blank" rel="noopener" aria-label="Open full-size image: Eight-channel solenoid driver PCB render"><img src="images/piano/eight-solenoid-render.png" alt="Eight-channel solenoid driver PCB render" loading="lazy" /></a><figcaption>Eight-channel solenoid driver PCB render</figcaption></figure>
+          <figure><a href="images/piano/eight-solenoid-layout.png" target="_blank" rel="noopener" aria-label="Open full-size image: Eight-channel solenoid driver PCB layout"><img src="images/piano/eight-solenoid-layout.png" alt="Eight-channel solenoid driver PCB layout" loading="lazy" /></a><figcaption>Eight-channel solenoid driver PCB layout</figcaption></figure>
+          <figure><a href="images/piano/four-solenoid-render.png" target="_blank" rel="noopener" aria-label="Open full-size image: Four-channel solenoid driver PCB render"><img src="images/piano/four-solenoid-render.png" alt="Four-channel solenoid driver PCB render" loading="lazy" /></a><figcaption>Four-channel solenoid driver PCB render</figcaption></figure>
+          <figure><a href="images/piano/four-solenoid-layout.png" target="_blank" rel="noopener" aria-label="Open full-size image: Four-channel solenoid driver PCB layout"><img src="images/piano/four-solenoid-layout.png" alt="Four-channel solenoid driver PCB layout" loading="lazy" /></a><figcaption>Four-channel solenoid driver PCB layout</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="Circuit design">
+        <h3>Circuit design</h3>
+        <div class="gallery">
+          <figure><a href="images/piano/h-bridge-schematic.png" target="_blank" rel="noopener" aria-label="Open full-size image: H-bridge schematic in LTspice"><img src="images/piano/h-bridge-schematic.png" alt="H-bridge schematic in LTspice" loading="lazy" /></a><figcaption>H-bridge schematic in LTspice</figcaption></figure>
+          <figure><a href="images/piano/solenoid-schematic.png" target="_blank" rel="noopener" aria-label="Open full-size image: Solenoid driver schematic in LTspice"><img src="images/piano/solenoid-schematic.png" alt="Solenoid driver schematic in LTspice" loading="lazy" /></a><figcaption>Solenoid driver schematic in LTspice</figcaption></figure>
+        </div>
+      </section>
+      <section aria-label="Team system integration">
+        <h3>Team system integration</h3>
+        <div class="gallery">
+          <figure><a href="images/piano/robot-setup.png" target="_blank" rel="noopener" aria-label="Open full-size image: Team robot lab setup"><img src="images/piano/robot-setup.png" alt="Team robot lab setup" loading="lazy" /></a><figcaption>Team robot lab setup</figcaption></figure>
+          <figure><a href="images/piano/rail-cad.png" target="_blank" rel="noopener" aria-label="Open full-size image: Team linear rail assembly CAD"><img src="images/piano/rail-cad.png" alt="Team linear rail assembly CAD" loading="lazy" /></a><figcaption>Team linear rail assembly CAD</figcaption></figure>
+          <figure><a href="images/piano/rail-assembly.png" target="_blank" rel="noopener" aria-label="Open full-size image: Assembled rail and actuator system"><img src="images/piano/rail-assembly.png" alt="Assembled rail and actuator system" loading="lazy" /></a><figcaption>Assembled rail and actuator system</figcaption></figure>
+          <figure><a href="images/piano/pid-response.png" target="_blank" rel="noopener" aria-label="Open full-size image: Team software and controls: PID control sequence response"><img src="images/piano/pid-response.png" alt="Team software and controls: PID control sequence response" loading="lazy" /></a><figcaption>Team software and controls: PID control sequence response</figcaption></figure>
+        </div>
+      </section>
+    </section>
+
   </main>
 
   <footer>
@@ -471,8 +901,39 @@ project documentation, and validated performance with an oscilloscope and variab
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    const projectStrip = document.querySelector('.project-strip');
+    const stripGroup = projectStrip.querySelector('.strip-group');
+    const stripImages = Array.from(stripGroup.children);
+    for (let i = stripImages.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [stripImages[i], stripImages[j]] = [stripImages[j], stripImages[i]];
+    }
+    stripGroup.replaceChildren(...stripImages);
+    const stripCopy = stripGroup.cloneNode(true);
+    stripCopy.setAttribute('aria-hidden', 'true');
+    stripCopy.querySelectorAll('a').forEach(link => link.tabIndex = -1);
+    projectStrip.querySelector('.strip-track').append(stripCopy);
+    projectStrip.classList.add('is-animated');
+    projectStrip.querySelector('.strip-toggle').addEventListener('click', event => {
+      const paused = projectStrip.classList.toggle('is-paused');
+      event.currentTarget.setAttribute('aria-pressed', String(paused));
+      event.currentTarget.textContent = paused ? 'Play gallery' : 'Pause gallery';
+    });
+
+
+    // Identify the actual embedding site; never substitute an unrelated origin.
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      document.querySelectorAll('iframe[data-video-id]').forEach(frame => {
+        const url = new URL('https://www.youtube.com/embed/' + frame.dataset.videoId);
+        url.searchParams.set('playsinline', '1');
+        url.searchParams.set('origin', location.origin);
+        frame.src = url.href;
+      });
+    }
+
+
     // --- Simple hash router ---
-    const DETAIL_IDS = ['buck-details','nn-details','speaker-details','coin-details','powerbank-details','cpu-details','ios-details','reflow-details'];
+    const DETAIL_IDS = ['piano-details','haptic-details','buck-details','nn-details','speaker-details','coin-details','powerbank-details','cpu-details','ios-details','reflow-details'];
     const home = document.getElementById('home');
     const routes = DETAIL_IDS.map(id => document.getElementById(id));
 
@@ -491,6 +952,7 @@ project documentation, and validated performance with an oscilloscope and variab
         const target = document.getElementById(h);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+      if (h === 'home') window.scrollTo({ top: 0, behavior: 'instant' });
       // Scroll detail into view as well
       if (isDetail) {
         const target = document.getElementById(h);
